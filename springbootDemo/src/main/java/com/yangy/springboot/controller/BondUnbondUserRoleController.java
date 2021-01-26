@@ -16,7 +16,7 @@ public class BondUnbondUserRoleController {
     @RequestMapping("/bondUserRole")
     public String bond(){
         int result = bondUnbondUserRoleService.bond();
-        return result == 1 ? "下单成功" : "下单失败";
+        return result == 1 ? "绑定成功" : "绑定失败";
     }
 
 //    @RequestMapping("/bondUserRole")
