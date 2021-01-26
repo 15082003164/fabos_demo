@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demoOrder" />
+        <module name="demoeureka" />
+        <module name="demostorage" />
+        <module name="demoorder" />
+        <module name="demoParent" />
+        <module name="demoEureka" />
+        <module name="demoStorage" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo111" target="1.8" />
+      <module name="demoeureka" target="1.8" />
+      <module name="demoorder" target="1.8" />
+      <module name="demoParent" target="1.8" />
+      <module name="demostorage" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demoOrder" options="-parameters" />
+      <module name="demoParent" options="-parameters" />
+      <module name="demoStorage" options="-parameters" />
+      <module name="demoorder" options="-parameters" />
+      <module name="demostorage" options="-parameters" />
+    </option>
+  </component>
+</project>
