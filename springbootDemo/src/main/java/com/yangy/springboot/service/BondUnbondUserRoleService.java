@@ -18,10 +18,10 @@ public class BondUnbondUserRoleService {
     @Resource
     private UserRoleDao userRoleDao;
 
-    public int bond(@RequestParam Integer userId,@RequestParam Integer roleId) {
+    public int bond() {
         UserRole userRole = new UserRole(null,null);
-        userRole.setUserId(userId);
-        userRole.setRoleId(roleId);
+        userRole.setUserId(userRole.getUserId());
+        userRole.setRoleId(userRole.getRoleId());
         int result = userRoleDao.insertSelective(userRole);
         return result;
     }
