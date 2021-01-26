@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -21,8 +20,6 @@ public class BondUnbondUserRoleService {
 
     public int bond(@RequestParam Integer userId,@RequestParam Integer roleId) {
         UserRole userRole = new UserRole(null,null);
-        //仓库Id用UUID生成
-        String storageId = UUID.randomUUID().toString().replaceAll("-", "");
         userRole.setUserId(userId);
         userRole.setRoleId(roleId);
         int result = userRoleDao.insertSelective(userRole);
