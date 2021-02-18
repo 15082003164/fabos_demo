@@ -28,10 +28,19 @@ public class OrderService {
         order.setUserId(order.getUserId());
         order.setStorageId(order.getStorageId());
         order.setQuantity(order.getQuantity());
-        int result = orderDao.insertSelective(order);
-//          int result = orderDao.insert(order);
+//        int result = orderDao.insertSelective(order);
+          int result = orderDao.insert(order);
         storageFeignClient.reduceStorage(order.getStorageId(), order.getQuantity());
         return result;
 
+    }
+
+    public void insert(){
+        Order order = new Order();
+        order.setOrderId("bbd");
+        order.setUserId(10);
+        order.setStorageId("456");
+        order.setQuantity(6);
+        orderDao.insert(order);
     }
 }
