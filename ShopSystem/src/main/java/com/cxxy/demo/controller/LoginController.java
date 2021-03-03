@@ -1,9 +1,8 @@
 package com.cxxy.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.cxxy.demo.bean.User;
+import com.cxxy.demo.service.LoginManager;
+import com.cxxy.demo.util.JSONData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cxxy.demo.bean.User;
-//import com.soft.admin.manager.LoginManager;
-import com.cxxy.demo.util.JSONData;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
 
     @Autowired
     LoginManager loginManager;
-    public LoginManager getLoginManager() {
-        return loginManager;
-    }
-    public void setLoginManager(LoginManager loginManager) {
-        this.loginManager = loginManager;
-    }
+//    public LoginManager getLoginManager() {
+//        return loginManager;
+//    }
+//    public void setLoginManager(LoginManager loginManager) {
+//        this.loginManager = loginManager;
+//    }
 
     /**
      * @Title: InSystem

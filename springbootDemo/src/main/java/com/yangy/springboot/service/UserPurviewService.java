@@ -15,12 +15,11 @@ public class UserPurviewService {
     private UserPurviewDao userPurviewDao;
 
 
-
-    public List<String> getPurviewIdByUser(User user){
+    public List<String> getPurviewIdByUser(User user) {
         return userPurviewDao.getPurviewIdByUser(user.getUsername());
     }
 
-    public List<String> getUserByPurviewId(Purview purview){
+    public List<String> getUserByPurviewId(Purview purview) {
         return userPurviewDao.getUserByPurviewId(purview.getPurviewId());
     }
 

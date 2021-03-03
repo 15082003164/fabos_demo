@@ -16,12 +16,12 @@ public class SelectUserPurviewController {
     private UserPurviewService userPurviewService;
 
     @RequestMapping("/getPurviewListByUser")
-    public List<String> getPurviewListByUser(@RequestBody User user){
-      return   userPurviewService.getPurviewIdByUser(user);
+    public List<String> getPurviewListByUser(@RequestBody User user) {
+        return userPurviewService.getPurviewIdByUser(user);
     }
 
     @RequestMapping("/getUserListByPurview")
-    public List<String> getUserListByPurview(@RequestBody Purview purview){
+    public List<String> getUserListByPurview(@RequestBody Purview purview) {
         return userPurviewService.getUserByPurviewId(purview);
     }
 

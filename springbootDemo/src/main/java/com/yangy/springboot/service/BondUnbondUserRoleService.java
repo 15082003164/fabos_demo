@@ -25,7 +25,7 @@ public class BondUnbondUserRoleService {
         return result;
     }
 
-    }
+}
 //    public void bond(UserRole userRole) {
 //        userRoleDao.bondUserAndRole(userRole);
 //    }
@@ -33,7 +33,6 @@ public class BondUnbondUserRoleService {
 //    public void unbond(UserRole userRole) {
 //        userRoleDao.unbondUserAndRole(userRole);
 //    }
-
 
 
 //        int userRoleBond = 1;

@@ -27,24 +27,24 @@ public class UserController {
 //    }
 
     @RequestMapping("/selectAll")
-    public List<User> selectAll(){
+    public List<User> selectAll() {
         return userService.selectAll();
     }
 
     @RequestMapping("/deleteUser")
-    public String deleteUser(Integer id){
+    public String deleteUser(Integer id) {
         userService.deleteUser(id);
         return "删除成功！";
     }
 
     @RequestMapping("/insertUser")
-    public String insertUser(@ModelAttribute User user){
+    public String insertUser(@ModelAttribute User user) {
         userService.insertUser(user);
         return "新增成功！";
     }
 
     @RequestMapping("/updateUser")
-    public String updateUser(@ModelAttribute User user){
+    public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "修改成功！";
     }

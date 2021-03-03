@@ -12,7 +12,7 @@ public class BondUnbondUserRoleController {
     private BondUnbondUserRoleService bondUnbondUserRoleService;
 
     @RequestMapping("/bondUserRole")
-    public String bond(UserRole userRole){
+    public String bond(UserRole userRole) {
         int result = bondUnbondUserRoleService.bond(userRole);
         return result == 1 ? "绑定成功" : "绑定失败";
     }

@@ -17,7 +17,7 @@ public class CheckResult {
         int[] var1 = nums;
         int var2 = nums.length;
 
-        for(int var3 = 0; var3 < var2; ++var3) {
+        for (int var3 = 0; var3 < var2; ++var3) {
             int num = var1[var3];
             if (num != 1) {
                 return false;
@@ -36,8 +36,8 @@ public class CheckResult {
                 return true;
             }
 
-            num = (Integer)var1.next();
-        } while(num == 1);
+            num = (Integer) var1.next();
+        } while (num == 1);
 
         return false;
     }
@@ -46,7 +46,7 @@ public class CheckResult {
         Boolean[] var1 = boolList;
         int var2 = boolList.length;
 
-        for(int var3 = 0; var3 < var2; ++var3) {
+        for (int var3 = 0; var3 < var2; ++var3) {
             Boolean bool = var1[var3];
             if (!bool) {
                 return false;
@@ -65,8 +65,8 @@ public class CheckResult {
                 return true;
             }
 
-            bool = (Boolean)var1.next();
-        } while(bool);
+            bool = (Boolean) var1.next();
+        } while (bool);
 
         return false;
     }

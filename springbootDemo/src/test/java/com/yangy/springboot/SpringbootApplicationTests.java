@@ -27,6 +27,7 @@ class SpringbootApplicationTests {
 
     /**
      * 测试数据库是否能连接成功
+     *
      * @throws SQLException
      */
     @Test

@@ -14,7 +14,7 @@ public class Test {
     private OrderService orderService;
 
     @org.junit.Test
-    public void insert(){
+    public void insert() {
         orderService.insert();
     }
 }

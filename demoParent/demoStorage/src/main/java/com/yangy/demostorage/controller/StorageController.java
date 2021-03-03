@@ -12,14 +12,14 @@ public class StorageController {
 
 
     @PostMapping("/reduceStorage")
-    public String reduceStorage(@RequestParam String storageId, @RequestParam Integer storageQuantity){
-        int result = storageService.reduceStorage(storageId,storageQuantity);
+    public String reduceStorage(@RequestParam String storageId, @RequestParam Integer storageQuantity) {
+        int result = storageService.reduceStorage(storageId, storageQuantity);
         return result == 1 ? "减少库存成功" : "减少库存失败";
     }
 
 
     @PostMapping("/addStorage")
-    public String addStorage(){
+    public String addStorage() {
         int result = storageService.addStorage();
         return result == 1 ? "增加库存成功" : "增加库存失败";
     }

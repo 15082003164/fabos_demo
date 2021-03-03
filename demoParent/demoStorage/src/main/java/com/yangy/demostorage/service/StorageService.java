@@ -14,7 +14,7 @@ public class StorageService {
     @Resource
     private StorageDao storageDao;
 
-    public int reduceStorage(String storageId,Integer storageQuantity) {
+    public int reduceStorage(String storageId, Integer storageQuantity) {
         Storage storage = storageDao.selectByPrimaryKey(storageId);
         storage.setStorageQuantity(storage.getStorageQuantity() - storageQuantity);
         int result = storageDao.updateByPrimaryKeySelective(storage);

@@ -9,8 +9,9 @@ import java.util.List;
 
 /**
  * Service层调用Dao层的接口
- * @version 0.0.1
+ *
  * @author yangy
+ * @version 0.0.1
  */
 @Service
 public class UserService {
@@ -19,23 +20,23 @@ public class UserService {
     private UserDao userDao;
 
     //用户查询
-    public List<User> selectAll(){
+    public List<User> selectAll() {
         return userDao.selectAll();
     }
 
     //用户删除
-    public void deleteUser(Integer id){
-       userDao.deleteUser(id);
+    public void deleteUser(Integer id) {
+        userDao.deleteUser(id);
 
     }
 
     //用户新增
-    public void insertUser(User user){
+    public void insertUser(User user) {
         userDao.insertUser(user);
     }
 
     //用户修改
-    public void updateUser(User user){
+    public void updateUser(User user) {
         userDao.updateUser(user);
     }
 }
