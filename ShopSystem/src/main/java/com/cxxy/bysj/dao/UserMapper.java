@@ -39,4 +39,6 @@ public interface UserMapper {
     int CountByUserChildrenId(String user_children_id);
 
     String getUserParentIdByUserName(String username);
+
+    List<UserRelation> SelectUserRelationByUserId(Integer userid);
 }

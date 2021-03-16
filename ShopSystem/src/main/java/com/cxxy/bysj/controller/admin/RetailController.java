@@ -44,9 +44,9 @@ public class RetailController {
         return "retail";
     }
 
-    @RequestMapping("/saveInfo")
+    @RequestMapping("/saveConfig")
     @ResponseBody
-    public Msg saveInfo(Integer retail_first_percent, Integer retail_second_percent, Integer retail_third_percent, Double price_config, HttpSession session) {
+    public Msg saveConfig(Integer retail_first_percent, Integer retail_second_percent, Integer retail_third_percent, Double price_config, HttpSession session) {
         Admin admin = (Admin) session.getAttribute("admin");
 
         if (admin == null) {
@@ -63,7 +63,7 @@ public class RetailController {
         return Msg.success("更新成功");
     }
 
-//    @RequestMapping("/price")
+//    @RequestMapping("/visitPrice")
 //    public String showRetailPrice(@RequestParam(value = "page",defaultValue = "1") Integer pn, Model model, HttpSession session) {
 //
 //        Admin admin = (Admin) session.getAttribute("admin");

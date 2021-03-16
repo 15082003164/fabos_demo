@@ -21,7 +21,7 @@ $(document).ready(function(){
         saveInfo.price_config=$("#price_config").val();
         $.ajax({
             type: "POST",
-            url: "/shop/admin/retail/saveInfo",
+            url: "/shop/admin/retail/saveConfig",
             contentType:"application/x-www-form-urlencoded; charset=utf-8",
             data:saveInfo,
             dateType:"json",

@@ -104,6 +104,15 @@
        from userrelation
        where user_children_id = #{user_children_id,jdbcType=VARCHAR}
   </select>
+
+  <select id="SelectUserRelationByUserId" parameterType="java.lang.Integer" resultType="com.cxxy.bysj.entity.UserRelation">
+       select ur.id,ur.user_parent_id,ur.user_children_id,ur.user_level
+       from userrelation ur
+       inner join user
+       on user.username = ur.user_children_id
+       and user.userId = #{userid,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteUserRelationByChild" parameterType="java.lang.String">
     delete from userrelation
     where user_children_id = #{user_children_id,jdbcType=VARCHAR}

@@ -1,13 +1,10 @@
 package com.cxxy.bysj.controller.front;
 
 
+import com.cxxy.bysj.service.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.cxxy.bysj.entity.*;
-import com.cxxy.bysj.service.AddressService;
-import com.cxxy.bysj.service.GoodsService;
-import com.cxxy.bysj.service.OrderService;
-import com.cxxy.bysj.service.UserService;
 import com.cxxy.bysj.util.Md5Util;
 import com.cxxy.bysj.util.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +32,9 @@ public class CustomerController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RetailService retailService;
 
     @RequestMapping("/register")
     public String register() {
@@ -190,6 +190,19 @@ public class CustomerController {
         addressModel.addAttribute("addressList", addressList);
         return "address";
     }
+
+    @RequestMapping("/info/retail")
+    public String retail(HttpServletRequest request, Model retailModel) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        List<Retail> retailList = retailService.selectRetailByUserId(user.getUsername());
+        retailModel.addAttribute("retailList", retailList);
+        return "myretail";
+    }
+
 
     @RequestMapping("/saveAddr")
     @ResponseBody

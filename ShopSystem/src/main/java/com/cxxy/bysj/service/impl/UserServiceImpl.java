@@ -67,5 +67,10 @@ public class UserServiceImpl implements UserService {
         userMapper.deleteUserRelationByChild(user_children_id);
     }
 
+    @Override
+    public List<UserRelation> SelectUserRelationByUserId(Integer userid) {
+        return userMapper.SelectUserRelationByUserId(userid);
+    }
+
 
 }

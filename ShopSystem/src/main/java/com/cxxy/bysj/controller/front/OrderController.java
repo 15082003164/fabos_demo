@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.cxxy.bysj.util.OperationUtil.division;
+
 
 @Controller
 public class OrderController {
@@ -34,6 +36,12 @@ public class OrderController {
 
     @Autowired
     private ActivityService activityService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RetailService retailService;
 
     @RequestMapping("/order")
     public String showOrder(HttpSession session, Model model) {
@@ -100,6 +108,7 @@ public class OrderController {
             totalPrice = totalPrice + goods.getNewPrice();
             oldTotalPrice = oldTotalPrice + goods.getNum() * goods.getPrice();
             goodsAndImage.add(goods);
+
         }
 
         model.addAttribute("totalPrice", totalPrice);
@@ -111,8 +120,11 @@ public class OrderController {
 
     @RequestMapping("/orderFinish")
     @ResponseBody
-    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid, HttpSession session) {
+    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid, HttpSession session ,Model model) {
         User user = (User) session.getAttribute("user");
+        Retail retail = new Retail();
+        List<RetailConfig> retailConfigList = retailService.selectConfig();
+
 
         //获取订单信息
         ShopCartExample shopCartExample = new ShopCartExample();
@@ -130,9 +142,71 @@ public class OrderController {
         //插入的订单号
         Integer orderId = order.getOrderid();
 
-        //把订单项写入orderitem表中
+        String str =user.getUser_parent_id();
+
+        /**
+         * 用户id(child) -> (根据user_level) -> parent_id(对应到user表中的userId) ->userId(Retail表中的userId) ->商品价格(indent表中的newPrice)*分销比 ->得到本次分销金额
+         * -> total_cash_price = total_cash_price + 本次分销金额
+         */
+
+
+        //把订单项写入orderitem表和retail表中
         for (ShopCart cart : shopCart) {
             orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
+            //分销信息
+             RetailConfig retailConfig = retailConfigList.get(0);
+            if (!str.equals("-")){
+                List<UserRelation> list = userService.SelectUserRelationByUserId(user.getUserid());
+                for(UserRelation userRelation : list){
+
+                    if (retailService.selectRetailByUserId(userRelation.getUser_parent_id()).isEmpty()){
+                        if (userRelation.getUser_level() == 1){
+
+                            retail.setUsername(userRelation.getUser_parent_id());
+                            retail.setThis_cash_price( (order.getNewprice() *  Double.parseDouble(division(retailConfig.getRetail_first_percent(),100))));
+                            retail.setTotal_cash_price(retail.getThis_cash_price());
+                            retailService.insertRetail(retail);
+                        }
+                        if (userRelation.getUser_level() == 2){
+                            retail.setUsername(userRelation.getUser_parent_id());
+                            retail.setThis_cash_price( (order.getNewprice() *  Double.parseDouble(division(retailConfig.getRetail_second_percent(),100))));
+                            retail.setTotal_cash_price(retail.getThis_cash_price());
+                            retailService.insertRetail(retail);
+                        }
+                        if (userRelation.getUser_level() == 3){
+                            retail.setUsername(userRelation.getUser_parent_id());
+                            retail.setThis_cash_price( (order.getNewprice() *  Double.parseDouble(division(retailConfig.getRetail_third_percent(),100))));
+                            retail.setTotal_cash_price(retail.getThis_cash_price());
+                            retailService.insertRetail(retail);
+                        }
+                    }else {
+                        if (userRelation.getUser_level() == 1){
+                            retail.setUsername(userRelation.getUser_parent_id());
+                            retail.setThis_cash_price( (order.getNewprice() *  Double.parseDouble(division(retailConfig.getRetail_first_percent(),100))));
+                            retail.setTotal_cash_price(retailService.selectTotalPriceByUsername(userRelation.getUser_parent_id()) + retail.getThis_cash_price());
+                            retailService.updateRetailById(retail,userRelation.getUser_parent_id());
+                        }
+                        if (userRelation.getUser_level() == 2){
+                            retail.setUsername(userRelation.getUser_parent_id());
+                            retail.setThis_cash_price( (order.getNewprice() *  Double.parseDouble(division(retailConfig.getRetail_second_percent(),100))));
+                            retail.setTotal_cash_price(retailService.selectTotalPriceByUsername(userRelation.getUser_parent_id()) + retail.getThis_cash_price());
+                            retailService.updateRetailById(retail,userRelation.getUser_parent_id());
+                        }
+                        if (userRelation.getUser_level() == 3){
+                            retail.setUsername(userRelation.getUser_parent_id());
+                            retail.setThis_cash_price( (order.getNewprice() *  Double.parseDouble(division(retailConfig.getRetail_third_percent(),100))));
+                            retail.setTotal_cash_price(retailService.selectTotalPriceByUsername(userRelation.getUser_parent_id()) + retail.getThis_cash_price());
+                            retailService.updateRetailById(retail,userRelation.getUser_parent_id());
+                        }
+                    }
+
+                }
+//                Double this_cash_price = retail.getThis_cash_price();
+//                Double total_cash_price = retail.getTotal_cash_price();
+//
+//                model.addAttribute("this_cash_price", this_cash_price);
+//                model.addAttribute("total_cash_price", total_cash_price);
+            }
         }
 
         return Msg.success("购买成功");

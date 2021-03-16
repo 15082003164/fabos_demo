@@ -94,20 +94,7 @@
                                 </c:forEach>
 
                                 </tbody>
-                                <%--<tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        <div class="coupon">
-                                            <!-- <label for="coupon_code"></label>
-                                                <input id="coupon_code" class="input-text" type="text" placeholder="Coupon code" value="" name="coupon_code"> -->
-                                            <a
-                                                    class="button_act button_act_3 button_act_333 button_act_tp "
-                                                    href="./shopcart.jsp">更新购物车</a>
-                                            <!-- <a class="button_act btn-tip " href="#">Update cart</a> -->
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tfoot>--%>
+
                             </table>
                         </div>
                         <div class="row">

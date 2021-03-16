@@ -28,4 +28,6 @@ public interface UserService {
 
     public void deleteUserRelationByChild(String user_children_id);
 
+    public List<UserRelation> SelectUserRelationByUserId(Integer userid);
+
 }
