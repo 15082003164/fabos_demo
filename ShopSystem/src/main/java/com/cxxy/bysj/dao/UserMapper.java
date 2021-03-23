@@ -3,6 +3,7 @@ package com.cxxy.bysj.dao;
 
 import com.cxxy.bysj.entity.User;
 import com.cxxy.bysj.entity.UserExample;
+import com.cxxy.bysj.entity.UserPrice;
 import com.cxxy.bysj.entity.UserRelation;
 import org.apache.ibatis.annotations.Param;
 
@@ -41,4 +42,14 @@ public interface UserMapper {
     String getUserParentIdByUserName(String username);
 
     List<UserRelation> SelectUserRelationByUserId(Integer userid);
+
+//    List<String> getUsername();
+
+    List<UserPrice> getUserPrice();
+
+    List<UserPrice> getUserPriceByUserName(String username);
+
+    int updateUserPrice(UserPrice userPrice);
+
+    int insertUserPrice(UserPrice userPrice);
 }

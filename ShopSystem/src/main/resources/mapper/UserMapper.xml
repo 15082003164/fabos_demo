@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where userId = #{userid,jdbcType=INTEGER}
@@ -113,6 +113,22 @@
        and user.userId = #{userid,jdbcType=INTEGER}
   </select>
 
+<!--  <select id="getUsername"  resultType="java.lang.String">-->
+<!--       select username-->
+<!--       from user-->
+<!--  </select>-->
+
+  <select id="getUserPrice"  resultType="com.cxxy.bysj.entity.UserPrice">
+       select username,user_total_price,user_price
+       from userprice
+  </select>
+
+  <select id="getUserPriceByUserName"  resultType="com.cxxy.bysj.entity.UserPrice">
+       select username,user_total_price,user_price
+       from userprice
+       where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteUserRelationByChild" parameterType="java.lang.String">
     delete from userrelation
     where user_children_id = #{user_children_id,jdbcType=VARCHAR}
@@ -128,10 +144,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cxxy.bysj.entity.User">
-    insert into user (userId, username, password, 
+    insert into user (userId, username, password,
       regTime, email, telephone
       )
-    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{regtime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}
       )
   </insert>
@@ -215,6 +231,40 @@
       </if>
     </trim>
   </insert>
+
+  <insert id="insertUserPrice" parameterType="com.cxxy.bysj.entity.UserPrice">
+    insert into userprice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+          username,
+      </if>
+      <if test="user_total_price != null">
+          user_total_price,
+      </if>
+      <if test="user_price != null">
+          user_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="user_total_price != null">
+        #{user_total_price,jdbcType=DOUBLE},
+      </if>
+      <if test="user_price != null">
+        #{user_price,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateUserPrice" parameterType="com.cxxy.bysj.entity.UserPrice">
+    update userprice
+    set user_total_price = #{user_total_price,jdbcType=DOUBLE},
+        user_price = #{user_price,jdbcType=DOUBLE}
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
+
   <select id="countByExample" parameterType="com.cxxy.bysj.entity.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">

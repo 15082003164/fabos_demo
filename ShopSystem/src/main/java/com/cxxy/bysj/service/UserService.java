@@ -3,6 +3,7 @@ package com.cxxy.bysj.service;
 
 import com.cxxy.bysj.entity.User;
 import com.cxxy.bysj.entity.UserExample;
+import com.cxxy.bysj.entity.UserPrice;
 import com.cxxy.bysj.entity.UserRelation;
 
 import java.util.List;
@@ -29,5 +30,15 @@ public interface UserService {
     public void deleteUserRelationByChild(String user_children_id);
 
     public List<UserRelation> SelectUserRelationByUserId(Integer userid);
+
+//    public List<String> getUsername();
+
+    public List<UserPrice> getUserPrice();
+
+    public List<UserPrice> getUserPriceByUserName(String username);
+
+    public void insertUserPrice(UserPrice userPrice);
+
+    public void updateUserPrice(UserPrice userPrice);
 
 }

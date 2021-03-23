@@ -41,7 +41,17 @@ public class RetailServiceImpl implements RetailService {
     }
 
     @Override
+    public Retail selectRetailByUserName(String username) {
+        return retailMapper.selectRetailByUserName(username);
+    }
+
+    @Override
     public Double selectTotalPriceByUsername(String username) {
         return retailMapper.selectTotalPriceByUsername(username);
+    }
+
+    @Override
+    public List<String> selectUserNameByRetail() {
+        return retailMapper.selectUserNameByRetail();
     }
 }

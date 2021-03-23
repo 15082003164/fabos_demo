@@ -4,6 +4,7 @@ package com.cxxy.bysj.service.impl;
 import com.cxxy.bysj.dao.UserMapper;
 import com.cxxy.bysj.entity.User;
 import com.cxxy.bysj.entity.UserExample;
+import com.cxxy.bysj.entity.UserPrice;
 import com.cxxy.bysj.entity.UserRelation;
 import com.cxxy.bysj.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,31 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserRelation> SelectUserRelationByUserId(Integer userid) {
         return userMapper.SelectUserRelationByUserId(userid);
+    }
+
+//    @Override
+//    public List<String> getUsername() {
+//        return userMapper.getUsername();
+//    }
+
+    @Override
+    public List<UserPrice> getUserPrice() {
+        return userMapper.getUserPrice();
+    }
+
+    @Override
+    public List<UserPrice> getUserPriceByUserName(String username) {
+        return userMapper.getUserPriceByUserName(username);
+    }
+
+    @Override
+    public void insertUserPrice(UserPrice userPrice) {
+        userMapper.insertUserPrice(userPrice);
+    }
+
+    @Override
+    public void updateUserPrice(UserPrice userPrice) {
+        userMapper.updateUserPrice(userPrice);
     }
 
 

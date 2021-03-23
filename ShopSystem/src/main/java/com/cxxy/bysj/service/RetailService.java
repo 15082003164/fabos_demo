@@ -18,5 +18,9 @@ public interface RetailService {
 
     public List<Retail> selectRetailByUserId(String username);
 
+    public Retail selectRetailByUserName(String username);
+
     public Double selectTotalPriceByUsername(String username);
+
+    public List<String> selectUserNameByRetail();
 }

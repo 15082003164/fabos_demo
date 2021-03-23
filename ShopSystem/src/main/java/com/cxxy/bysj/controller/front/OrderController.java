@@ -201,11 +201,6 @@ public class OrderController {
                     }
 
                 }
-//                Double this_cash_price = retail.getThis_cash_price();
-//                Double total_cash_price = retail.getTotal_cash_price();
-//
-//                model.addAttribute("this_cash_price", this_cash_price);
-//                model.addAttribute("total_cash_price", total_cash_price);
             }
         }
 

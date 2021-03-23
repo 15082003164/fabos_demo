@@ -29,6 +29,14 @@ public interface RetailMapper {
             "    where username = #{username}")
     List<Retail> selectRetailByUserId(String username);
 
+    @Select("    select username from retail")
+    List<String> selectUserNameByRetail();
+
+    @Select("    select username ,total_cash_price ,this_cash_price" +
+            "    from retail" +
+            "    where username = #{username}")
+    Retail selectRetailByUserName(String username);
+
     @Select("select total_cash_price from retail where username = #{username}")
     Double selectTotalPriceByUsername(String username);
 

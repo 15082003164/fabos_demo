@@ -54,16 +54,11 @@ public class AdminOrderController {
 
             List<Goods> goodsList = new ArrayList<>();
             for (OrderItem orderItem : orderItemList) {
-//                goodsIdList.add(orderItem.getGoodsid());
                 Goods goods = goodsService.selectById(orderItem.getGoodsid());
                 goods.setNum(orderItem.getNum());
                 goodsList.add(goods);
             }
 
-            //根据goodsid查询商品
-            /*GoodsExample goodsExample = new GoodsExample();
-            goodsExample.or().andGoodsidIn(goodsIdList);
-            List<Goods> goodsList = goodsService.selectByExample(goodsExample);*/
             order.setGoodsInfo(goodsList);
 
             //查询地址
