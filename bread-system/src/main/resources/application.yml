@@ -1,5 +1,5 @@
 server:
-  port: 8096
+  port: 8095
   servlet:
     context-path: /shop
     multipart:
@@ -11,7 +11,7 @@ server:
 spring:
      datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://127.0.0.1:3306/db_shopmaster?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
+        url: jdbc:mysql://127.0.0.1:3306/bread_system?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8
         username: root
         password: 12345678
         hikari:
