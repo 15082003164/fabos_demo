@@ -22,16 +22,13 @@ public class Order {
 
     private Boolean iscomplete;
 
-    private Integer addressid;
-
     private List<Goods> goodsInfo;
 
     public Order() {
     }
 
-    private Address address;
 
-    public Order(Integer orderid, Integer userid, Date ordertime, Float oldprice, Float newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, Integer addressid, List<Goods> goodsInfo, Address address) {
+    public Order(Integer orderid, Integer userid, Date ordertime, Float oldprice, Float newprice, Boolean ispay, Boolean issend, Boolean isreceive, Boolean iscomplete, List<Goods> goodsInfo) {
         this.orderid = orderid;
         this.userid = userid;
         this.ordertime = ordertime;
@@ -41,9 +38,7 @@ public class Order {
         this.issend = issend;
         this.isreceive = isreceive;
         this.iscomplete = iscomplete;
-        this.addressid = addressid;
         this.goodsInfo = goodsInfo;
-        this.address = address;
     }
 
     public Integer getOrderid() {
@@ -118,14 +113,6 @@ public class Order {
         this.iscomplete = iscomplete;
     }
 
-    public Integer getAddressid() {
-        return addressid;
-    }
-
-    public void setAddressid(Integer addressid) {
-        this.addressid = addressid;
-    }
-
     public List<Goods> getGoodsInfo() {
         return goodsInfo;
     }
@@ -134,11 +121,5 @@ public class Order {
         this.goodsInfo = goodsInfo;
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }

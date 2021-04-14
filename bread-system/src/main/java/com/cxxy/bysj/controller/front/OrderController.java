@@ -21,9 +21,6 @@ import static com.cxxy.bysj.util.OperationUtil.division;
 @Controller
 public class OrderController {
 
-    /*@Value("#{addressService}")*/
-    @Autowired
-    private AddressService addressService;
 
     @Autowired
     private ShopCartService shopCartService;
@@ -37,6 +34,9 @@ public class OrderController {
     @Autowired
     private ActivityService activityService;
 
+    @Autowired
+    private SaleService saleService;
+
     @RequestMapping("/order")
     public String showOrder(HttpSession session, Model model) {
 
@@ -45,12 +45,6 @@ public class OrderController {
             return "redirect:/login";
         }
 
-        //查询当前用户的收货地址
-        AddressExample addressExample = new AddressExample();
-        addressExample.or().andUseridEqualTo(user.getUserid());
-        List<Address> addressList = addressService.getAllAddressByExample(addressExample);
-
-        model.addAttribute("address", addressList);
 
         //订单信息
         //获取当前用户的购物车信息
@@ -114,7 +108,7 @@ public class OrderController {
 
     @RequestMapping("/orderFinish")
     @ResponseBody
-    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, Integer addressid, HttpSession session ,Model model) {
+    public Msg orderFinish(Float oldPrice, Float newPrice, Boolean isPay, HttpSession session ,Model model) {
         User user = (User) session.getAttribute("user");
 
         //获取订单信息
@@ -123,10 +117,11 @@ public class OrderController {
         List<ShopCart> shopCart = shopCartService.selectByExample(shopCartExample);
 
         //把订单信息写入数据库
-        Order order = new Order(null, user.getUserid(), new Date(), oldPrice, newPrice, isPay, false, false, false, addressid, null, null);
+        Order order = new Order(null, user.getUserid(), new Date(), oldPrice, newPrice, isPay, false, false, false, null);
         orderService.insertOrder(order);
         //插入的订单号
         Integer orderId = order.getOrderid();
+
 
 
         //把订单项写入orderitem表,修改商品数量
@@ -134,6 +129,8 @@ public class OrderController {
             orderService.insertOrderItem(new OrderItem(null, orderId, cart.getGoodsid(), cart.getGoodsnum()));
             Goods goods = goodsService.selectById(cart.getGoodsid());
             goodsService.updateNumForOrderFinish(goods.getGoodsid(),goods.getNum() - cart.getGoodsnum());
+            Sale sale = new Sale(goods.getGoodsid(),goods.getGoodsname(),cart.getGoodsnum(),order.getOrdertime());
+            saleService.insertByGoodsId(sale);
         }
 
         //删除购物车

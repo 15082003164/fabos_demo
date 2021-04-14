@@ -2,8 +2,6 @@ package com.cxxy.bysj.controller.front;
 
 
 import com.cxxy.bysj.service.*;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.cxxy.bysj.entity.*;
 import com.cxxy.bysj.util.Md5Util;
 import com.cxxy.bysj.util.Msg;
@@ -119,61 +117,8 @@ public class CustomerController {
         }
     }
 
-    @Autowired
-    private AddressService addressService;
-
-    @RequestMapping("/info/address")
-    public String address(HttpServletRequest request, Model addressModel) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return "redirect:/login";
-        }
-        AddressExample addressExample = new AddressExample();
-        addressExample.or().andUseridEqualTo(user.getUserid());
-        List<Address> addressList = addressService.getAllAddressByExample(addressExample);
-        addressModel.addAttribute("addressList", addressList);
-        return "address";
-    }
-
-//    @RequestMapping("/info/retail")
-//    public String retail(HttpServletRequest request, Model retailModel) {
-//        HttpSession session = request.getSession();
-//        User user = (User) session.getAttribute("user");
-//        if (user == null) {
-//            return "redirect:/login";
-//        }
-//        List<Retail> retailList = retailService.selectRetailByUserId(user.getUsername());
-//        retailModel.addAttribute("retailList", retailList);
-//        return "myretail";
-//    }
 
 
-    @RequestMapping("/saveAddr")
-    @ResponseBody
-    public Msg saveAddr(Address address) {
-
-        addressService.updateByPrimaryKeySelective(address);
-        return Msg.success("修改成功");
-    }
-
-    @RequestMapping("/deleteAddr")
-    @ResponseBody
-    public Msg deleteAddr(Address address) {
-        addressService.deleteByPrimaryKey(address.getAddressid());
-        return Msg.success("删除成功");
-    }
-
-    @RequestMapping("/insertAddr")
-    @ResponseBody
-    public Msg insertAddr(Address address, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = new User();
-        user = (User) session.getAttribute("user");
-        address.setUserid(user.getUserid());
-        addressService.insertSelective(address);
-        return Msg.success("添加成功");
-    }
 
     @Autowired
     private OrderService orderService;
@@ -201,7 +146,6 @@ public class CustomerController {
         OrderItem orderItem;
         List<OrderItem> orderItemList = new ArrayList<>();
         Goods goods = new Goods();
-        Address address;
         for (Integer i = 0; i < orderList.size(); i++) {
             order = orderList.get(i);
             OrderItemExample orderItemExample = new OrderItemExample();
@@ -227,8 +171,6 @@ public class CustomerController {
 //                listGood.add(goods);
 //            }
             order.setGoodsInfo(listGood);
-            address = addressService.selectByPrimaryKey(order.getAddressid());
-            order.setAddress(address);
             orderList.set(i, order);
         }
         orderModel.addAttribute("orderList", orderList);
@@ -247,12 +189,23 @@ public class CustomerController {
 
     @RequestMapping("/savePsw")
     @ResponseBody
-    public Msg savePsw(String Psw, HttpServletRequest request) {
+    public Msg savePsw(String OldPsw, String Psw, HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        user.setPassword(Md5Util.MD5Encode(Psw, "UTF-8"));
-        userService.updateByPrimaryKeySelective(user);
-        return Msg.success("修改密码成功");
+
+        if(Md5Util.MD5Encode(OldPsw, "UTF-8").equals(user.getPassword())){
+            if(Psw.length()<8){
+                return Msg.fail("请输入不少于8位的密码");
+            }else{
+                user.setPassword(Md5Util.MD5Encode(Psw, "UTF-8"));
+                userService.updateByPrimaryKeySelective(user);
+                return Msg.success("修改密码成功");
+            }
+        }else {
+            return Msg.fail("修改失败，请重新输入密码");
+        }
+
+
     }
 
     @RequestMapping("/finishList")

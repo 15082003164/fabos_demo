@@ -53,7 +53,7 @@
                     <table id="goodsinfo" class="table table-striped table-bordered templatemo-user-table">
                         <thead>
                         <tr>
-                            <td><a href="" class="white-text templatemo-sort-by">id<span class="caret"></span></a></td>
+                            <td><a href="" class="white-text templatemo-sort-by">工号<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">用户名<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">Email<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">联系电话<span class="caret"></span></a></td>

@@ -50,42 +50,36 @@ $(document).ready(function(){
         });
     });
 
-    $("#oldPsw").blur(function (){
-        var psw1 = $("#oldPsw").val()
-        if (psw1!=$("#Psw").attr("Psw"))
-        {
-            $("#oldPswError").show();
-        }
-        else
-        {
-            $("#oldPswError").hide();
-            oldPswflag=1;
-        }
-    })
-
-   /* $("#newPsw").focus(function (){
-        if ($("#oldPsw").val()==$("#Psw").attr("Psw"))
-        {
-            $("#oldPswError").hide();
-            oldPswflag=1;
-        }
-    });*/
-
-    $("#newPsw").blur(function (){
-        if($("#newPsw").val().length<8)
-        {
-            $("#newPswError").show();
-        }
-        else {
-            $("#newPswError").hide();
-            newPswflag=1;
-        }
-    });
+    // $("#oldPsw").blur(function (){
+    //     var psw1 = $("#oldPsw").val()
+    //     if (psw1!=$("#Psw").attr("Psw"))
+    //     {
+    //         $("#oldPswError").show();
+    //     }
+    //     else
+    //     {
+    //         $("#oldPswError").hide();
+    //         oldPswflag=1;
+    //     }
+    // })
+    //
+    //
+    // $("#newPsw").blur(function (){
+    //     if($("#newPsw").val().length<8)
+    //     {
+    //         $("#newPswError").show();
+    //     }
+    //     else {
+    //         $("#newPswError").hide();
+    //         newPswflag=1;
+    //     }
+    // });
 
     $("#savePsw").click(function (){
-        if (oldPswflag==1&&newPswflag==1)
-        {
+        // if (oldPswflag==1&&newPswflag==1)
+        // {
             var Psw={};
+            Psw.OldPsw=$("#oldPsw").val();
             Psw.Psw=$("#newPsw").val();
             $.ajax({
                 type: "POST",
@@ -110,7 +104,7 @@ $(document).ready(function(){
                     alert("更新失败");
                 }
             });
-        }
+        // }
     })
 
 });

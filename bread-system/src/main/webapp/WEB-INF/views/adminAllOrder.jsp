@@ -44,18 +44,12 @@
     <jsp:include page="sidebar.jsp"/>
     <!-- Main content -->
     <div class="templatemo-content col-1 light-gray-bg">
-        <jsp:include page="adminOrderNav.jsp"/>
         <div class="templatemo-content-container">
-            <%--<div class="templatemo-content-widget white-bg">--%>
-            <%--<h2 class="margin-bottom-10">Geo Charts</h2>--%>
-            <%--<p class="margin-bottom-0">Credit goes to <a href="http://jqvmap.com" target="_parent">JQVMap</a>.</p>--%>
-            <%--</div>--%>
 
             <c:forEach items="${pageInfo.list}" var="orderInfo">
                 <div class="templatemo-flex-row flex-content-row">
                     <div class="col-1">
                         <div class="panel panel-default margin-10">
-                            <div class="panel-heading"><h2>${orderInfo.address.conname}</h2></div>
                             <div class="panel-body">
                                 <div>
                                     <div class="order-info margin-bottom-10">
@@ -66,17 +60,11 @@
                                                 <tr>
                                                     <td><a href="" class="white-text templatemo-sort-by">订单号<span
                                                             class="caret"></span></a></td>
-                                                    <td><a href="" class="white-text templatemo-sort-by">用户<span class="caret"></span></a>
+                                                    <td><a href="" class="white-text templatemo-sort-by">销售工号<span class="caret"></span></a>
                                                     </td>
                                                     <td><a href="" class="white-text templatemo-sort-by">原价<span
                                                             class="caret"></span></a></td>
                                                     <td><a href="" class="white-text templatemo-sort-by">实付款<span
-                                                            class="caret"></span></a></td>
-                                                    <td><a href="" class="white-text templatemo-sort-by">收货人<span
-                                                            class="caret"></span></a></td>
-                                                    <td><a href="" class="white-text templatemo-sort-by">收货地址<span
-                                                            class="caret"></span></a></td>
-                                                    <td><a href="" class="white-text templatemo-sort-by">联系方式<span
                                                             class="caret"></span></a></td>
                                                     <td><a href="" class="white-text templatemo-sort-by">时间<span
                                                             class="caret"></span></a></td>
@@ -88,9 +76,6 @@
                                                     <td>${orderInfo.userid}</td>
                                                     <td>￥${orderInfo.oldprice}</td>
                                                     <td>￥${orderInfo.newprice}</td>
-                                                    <td>${orderInfo.address.conname}</td>
-                                                    <td>${orderInfo.address.province} ${orderInfo.address.city} ${orderInfo.address.county} ${orderInfo.address.detailaddr}</td>
-                                                    <td>${orderInfo.address.contel}</td>
                                                     <td>${orderInfo.ordertime}</td>
                                                 </tr>
 
@@ -125,23 +110,13 @@
                                                         <td>${goods.goodsname}</td>
                                                         <td>￥${goods.price}</td>
                                                         <td>${goods.num}</td>
-                                                            <%--<td>234&lt;%&ndash;${goods.detailcate}&ndash;%&gt;</td>--%>
                                                         <td><a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}" class="templatemo-link">详情</a></td>
-                                                            <%--<td>
-                                                                <button href="" class="templatemo-edit-btn">编辑</button>
-                                                            </td>
-                                                            <td>
-                                                                <button href="" class="templatemo-delete-btn">删除</button>
-                                                            </td>--%>
                                                     </tr>
                                                 </c:forEach>
 
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                    <div class="margin-bottom-10">
-                                        <a href="${pageContext.request.contextPath}/admin/order/sendGoods?orderid=${orderInfo.orderid}" class="templatemo-edit-btn pull-right">发货</a>
                                     </div>
                                 </div>
                             </div>

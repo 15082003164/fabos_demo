@@ -32,24 +32,7 @@
             </div>
         </div>
 
-        <%--确认收货地址--%>
-        <h4 class="header-border h4-mar">确认收货地址<a href="${pageContext.request.contextPath}/info/address" class="pull-right manage-a">管理收货地址</a></h4>
-
-        <%--<form action="" method="post">--%>
-        <div class="address">
-            <c:forEach items="${address}" var="addItem">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="addressid" class="address-check" value="${addItem.addressid}"
-                               checked>
-                            ${addItem.province} ${addItem.city} ${addItem.county}  ${addItem.detailaddr}（${addItem.conname}收）${addItem.contel}
-                    </label>
-                </div>
-            </c:forEach>
-        </div>
-
         <%--商品信息--%>
-        <h4 class="header-border h4-mar-2">确认收货信息</h4>
         <div class="row">
             <div class="all_wis_frm">
                 <div class="col-md-12">

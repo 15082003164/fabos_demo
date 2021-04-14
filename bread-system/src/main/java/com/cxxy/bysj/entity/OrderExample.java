@@ -644,66 +644,6 @@ public class OrderExample {
             addCriterion("isComplete not between", value1, value2, "iscomplete");
             return (Criteria) this;
         }
-
-        public Criteria andAddressidIsNull() {
-            addCriterion("addressId is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidIsNotNull() {
-            addCriterion("addressId is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidEqualTo(Integer value) {
-            addCriterion("addressId =", value, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidNotEqualTo(Integer value) {
-            addCriterion("addressId <>", value, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidGreaterThan(Integer value) {
-            addCriterion("addressId >", value, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("addressId >=", value, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidLessThan(Integer value) {
-            addCriterion("addressId <", value, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidLessThanOrEqualTo(Integer value) {
-            addCriterion("addressId <=", value, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidIn(List<Integer> values) {
-            addCriterion("addressId in", values, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidNotIn(List<Integer> values) {
-            addCriterion("addressId not in", values, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidBetween(Integer value1, Integer value2) {
-            addCriterion("addressId between", value1, value2, "addressid");
-            return (Criteria) this;
-        }
-
-        public Criteria andAddressidNotBetween(Integer value1, Integer value2) {
-            addCriterion("addressId not between", value1, value2, "addressid");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {

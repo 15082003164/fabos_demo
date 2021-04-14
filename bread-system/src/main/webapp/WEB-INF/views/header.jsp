@@ -61,15 +61,6 @@
                 <ul class="nav navbar-nav">
                     <li><a class="a-color" href="${pageContext.request.contextPath}/main">首页</a></li>
                     <li><a class="a-color" href="${pageContext.request.contextPath}/information">个人信息</a></li>
-                    <li class="dropdown"><a class="a-color" href="${pageContext.request.contextPath}/info/list"
-                                            class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                            aria-haspopup="true" aria-expanded="false">我的订单 <span
-                            class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${pageContext.request.contextPath}/info/address">地址管理</a></li>
-                            <li><a href="${pageContext.request.contextPath}/order">交易中</a></li>
-                            <li role="separator" class="divider"></li>
-                        </ul></li>
                 </ul>
 
                 <form class="navbar-form navbar-right" role="search" method="get" action="${pageContext.request.contextPath}/search">

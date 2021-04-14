@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>个人信息-我的订单</title>
+    <title>订单详情</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -24,15 +24,10 @@
 
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://cdn.bootcss.com/material-design-lite/1.3.0/material.cyan-light_blue.min.css" rel="stylesheet">
-   <%-- <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/infostyle.css">
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap.min.css">
@@ -40,7 +35,6 @@
     <script src="${pageContext.request.contextPath}/js/list.js"></script>
     <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
-    <script src="${pageContext.request.contextPath}/js/distpicker.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.raty.js"></script>
     <style>
         #view-source {
@@ -126,55 +120,26 @@
             <span class="mdl-layout-title">订单管理</span>
             <div class="mdl-layout-spacer"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                <%-- <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-                     <i class="material-icons">search</i>
-                 </label>
-                 <div class="mdl-textfield__expandable-holder">
-                     <input class="mdl-textfield__input" type="text" id="search">
-                     <label class="mdl-textfield__label" for="search">Enter your query...</label>
-                 </div>--%>
             </div>
-            <%-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-                 <i class="material-icons">more_vert</i>
-             </button>
-             <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                 <li class="mdl-menu__item">About</li>
-                 <li class="mdl-menu__item">Contact</li>
-                 <li class="mdl-menu__item">Legal information</li>
-             </ul>--%>
         </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="demo-drawer-header">
-            <%-- <img src="images/user.jpg" class="demo-avatar">--%>
             <div class="demo-avatar-dropdown">
-                <h1>用户后台管理</h1>
-                <%-- <span>hello@example.com</span>--%>
+                <h1>收银后台管理</h1>
                 <div class="mdl-layout-spacer"></div>
-                <%--<button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                    <i class="material-icons" role="presentation">arrow_drop_down</i>
-                    <span class="visuallyhidden">Accounts</span>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                    <li class="mdl-menu__item">hello@example.com</li>
-                    <li class="mdl-menu__item">info@example.com</li>
-                    <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-                </ul>--%>
             </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
             <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>地址管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/retail"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>分销管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/favorite"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>我的收藏</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
             <div class="mdl-grid demo-content" id="parent">
                 <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                    <h3>未发货</h3><%--未收到货--%>
+                    <h3>订单</h3>
                     <c:forEach items="${orderList}" var="order">
                         <c:if test="${!order.issend}">
                             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
@@ -190,22 +155,7 @@
                                             ${order.ordertime.month+1} 月
                                             ${order.ordertime.date} 日
                                         &nbsp;
-                                        收货地址:
-                                            ${order.address.province}
-                                            ${order.address.city}
-                                            ${order.address.county}
                                     </td>
-                                    <%--<td class="no-border col-lg-7">
-                                        订单日期:
-                                            ${order.ordertime.year+1900} 年
-                                            ${order.ordertime.month+1} 月
-                                            ${order.ordertime.date} 日
-                                        &nbsp;
-                                        收货地址:
-                                            ${order.address.province}
-                                            ${order.address.city}
-                                            ${order.address.county}
-                                    </td>--%>
                                     <td  class="no-border col-lg-3">
                                         原价:${order.oldprice}  现价:${order.newprice}
                                     </td>
@@ -264,200 +214,7 @@
                     </c:forEach>
 
                 </div>
-                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                    <h3>未收货</h3><%--未完成--%>
-                    <c:forEach items="${orderList}" var="order">
-                        <c:if test="${order.issend&&!order.isreceive}">
-                            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
-                                <div class="tab-content col-lg-12">
-                                    <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
-                                        <tbody>
-                                        <tr>
-                                            <td class="no-border col-lg-9" >
-                                                订单号：<i name="orderid">${order.orderid}</i>
-                                                &nbsp;
-                                                订单日期:
-                                                    ${order.ordertime.year+1900} 年
-                                                    ${order.ordertime.month+1} 月
-                                                    ${order.ordertime.date} 日
-                                                &nbsp;
-                                                收货地址:
-                                                    ${order.address.province}
-                                                    ${order.address.city}
-                                                    ${order.address.county}
-                                            </td>
-                                            <%--<td class="no-border col-lg-7">
-                                                订单日期:
-                                                    ${order.ordertime.year+1900} 年
-                                                    ${order.ordertime.month+1} 月
-                                                    ${order.ordertime.date} 日
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
-                                                收货地址:
-                                                    ${order.address.province}
-                                                    ${order.address.city}
-                                                    ${order.address.county}
-                                            </td>--%>
-                                            <td  class="no-border col-lg-3">
-                                                原价:${order.oldprice}  现价:${order.newprice}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table " cellpadding="6" cellspacing="1" ><%--商品描述--%>
-                                        <tbody>
-                                        <tr>
-                                            <td class="col-lg-1">
-                                                商品号
-                                            </td>
-                                            <td class="col-lg-2">
-                                                商品名称
-                                            </td>
-                                            <td class="col-lg-1">
-                                                价格
-                                            </td>
-                                            <td class="col-lg-1">
-                                                数量
-                                            </td>
-                                            <td class="col-lg-2">
-                                                商品分类
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <c:forEach items="${order.goodsInfo}" var="good">
-                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
-                                        <tbody>
-                                        <tr>
-                                            <td class="col-lg-1">
-                                                    ${good.goodsid}
-                                            </td>
-                                            <td class="col-lg-2">
-                                                <a href="${pageContext.request.contextPath}/detail?goodsid=${good.goodsid}">${good.goodsname}</a>
-                                            </td>
-                                            <td class="col-lg-1">
-                                                    ${good.price}
-                                            </td>
-                                            <td class="col-lg-1">
-                                                    ${good.num}
-                                            </td>
-                                            <td class="col-lg-2">
-                                                    ${good.detailcate}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    </c:forEach>
-                                </div>
-                                <div class="mdl-card__actions mdl-card--border">
-                                    <button class="templatemo-blue-button " name="finishList"><h5>完成订单</h5></button>
-                                </div>
-                            </div>
-                        </c:if>
-                    </c:forEach>
 
-                </div>
-                <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                    <h3>已完成</h3><%--已完成--%>
-                    <c:forEach items="${orderList}" var="order">
-                        <c:if test="${order.iscomplete}">
-                            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" name="parent">
-                                <div class="tab-content col-lg-12">
-                                    <table class="table " cellpadding="6" cellspacing="1" ><%--订单信息--%>
-                                        <tbody>
-                                        <tr>
-                                            <td class="no-border col-lg-9" >
-                                                订单号：<i name="orderid">${order.orderid}</i>
-                                                &nbsp;
-                                                &nbsp;
-                                                订单日期:
-                                                    ${order.ordertime.year+1900} 年
-                                                    ${order.ordertime.month+1} 月
-                                                    ${order.ordertime.date} 日
-                                                &nbsp;
-                                                收货地址:
-                                                    ${order.address.province}
-                                                    ${order.address.city}
-                                                    ${order.address.county}
-                                            </td>
-                                           <%-- <td class="no-border col-lg-7">
-                                                订单日期:
-                                                    ${order.ordertime.year+1900} 年
-                                                    ${order.ordertime.month+1} 月
-                                                    ${order.ordertime.date} 日
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
-                                                收货地址:
-                                                    ${order.address.province}
-                                                    ${order.address.city}
-                                                    ${order.address.county}
-                                            </td>--%>
-                                            <td  class="no-border col-lg-3">
-                                               原价:${order.oldprice}  现价:${order.newprice}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table " cellpadding="6" cellspacing="1" ><%--商品描述--%>
-                                        <tbody>
-                                        <tr>
-                                            <td class="col-lg-1">
-                                                商品号
-                                            </td>
-                                            <td class="col-lg-2">
-                                                商品名称
-                                            </td>
-                                            <td class="col-lg-1">
-                                                价格
-                                            </td>
-                                            <td class="col-lg-1">
-                                                数量
-                                            </td>
-                                            <td class="col-lg-2">
-                                                商品分类
-                                            </td>
-                                            <td class="col-lg-1">
-
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <c:forEach items="${order.goodsInfo}" var="good">
-                                    <table class="table table-bordered" cellpadding="6" cellspacing="1" ><%--商品信息--%>
-                                        <tbody>
-                                        <tr>
-                                            <td class="col-lg-1">
-                                                    ${good.goodsid}
-                                            </td>
-                                            <td class="col-lg-2">
-                                                <a href="${pageContext.request.contextPath}/detail?goodsid=${good.goodsid}">${good.goodsname}</a>
-                                            </td>
-                                            <td class="col-lg-1">
-                                                    ${good.price}
-                                            </td>
-                                            <td class="col-lg-1">
-                                                    ${good.num}
-                                            </td>
-                                            <td class="col-lg-2">
-                                                    ${good.detailcate}
-                                            </td>
-                                            <td class="col-lg-1">
-                                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect font-color" name="evaluate" ><h5>评价</h5></button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    </c:forEach>
-                                </div>
-                                <div class="mdl-card__actions mdl-card--border">
-                                    <button class="templatemo-blue-button finish-btn" name="deleteList"><h5>删除订单</h5></button>
-                                </div>
-                            </div>
-                        </c:if>
-                    </c:forEach>
-                </div>
             </div>
     </main>
 </div>

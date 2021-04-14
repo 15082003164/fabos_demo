@@ -1,7 +1,6 @@
 package com.cxxy.bysj.service.impl;
 
 
-import com.cxxy.bysj.dao.AddressMapper;
 import com.cxxy.bysj.dao.OrderItemMapper;
 import com.cxxy.bysj.dao.OrderMapper;
 import com.cxxy.bysj.entity.*;
@@ -20,8 +19,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired(required = false)
     private OrderItemMapper orderItemMapper;
 
-    @Autowired(required = false)
-    private AddressMapper addressMapper;
 
     @Override
     public void insertOrder(Order order) {
@@ -44,10 +41,6 @@ public class OrderServiceImpl implements OrderService {
         return orderItemMapper.selectByExample(orderItemExample);
     }
 
-    @Override
-    public Address getAddressByKey(Integer addressid) {
-        return addressMapper.selectByPrimaryKey(addressid);
-    }
 
     @Override
     public void updateOrderByKey(Order order) {
