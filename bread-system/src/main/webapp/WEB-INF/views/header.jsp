@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
 <div class="row">
     <div class="col-md-4" role="navigation">
-        <!-- <h1 style="font-size: 20px;margin-top: 9px">东大咸鱼</h1> -->
 
         <ul class="nav nav-pills">
             <c:if test="${empty sessionScope.user}">
@@ -24,7 +23,21 @@
                 </li>
             </c:if>
 
-            <li><a href="${pageContext.request.contextPath}/register">注册</a></li>
+            <li><a href="${pageContext.request.contextPath}/register" style="color: #3c69a6">注册</a></li>
+
+            <li class="info-a">
+                <a href="" style="color: #3c69a6">
+                            管理
+                        <span class="glyphicon glyphicon-triangle-bottom" style="font-size: 5px;margin-left: 7px;" aria-hidden="true">
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="a-color" href="${pageContext.request.contextPath}/admin/login">后台登录</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a class="a-color" href="${pageContext.request.contextPath}/cooker/login">厨房登录</a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>
     <div class="col-md-8">

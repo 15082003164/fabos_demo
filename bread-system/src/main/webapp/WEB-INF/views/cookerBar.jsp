@@ -9,8 +9,9 @@
     </div>
     <nav class="templatemo-left-nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/cooker/show"><i class="fa fa-bar-chart fa-fw"></i>面包管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/cooker/show"><i class="fa fa-database fa-fw"></i>面包管理</a></li>
             <li><a href="${pageContext.request.contextPath}/cooker/kinds/show"><i class="fa fa-database fa-fw"></i>材料管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/"><i class="fa fa-eject fa-fw"></i>返回主页</a></li>
             <li><a href="${pageContext.request.contextPath}/cooker/logout"><i class="fa fa-eject fa-fw"></i>退出系统</a></li>
         </ul>
     </nav>

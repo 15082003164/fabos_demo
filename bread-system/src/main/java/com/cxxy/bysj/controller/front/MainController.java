@@ -32,26 +32,27 @@ public class MainController {
         } else {
             userid = user.getUserid();
         }
-
-        //数码分类
-        List<Goods> digGoods = getCateGoods("数码", userid);
-        model.addAttribute("digGoods", digGoods);
-
-        //日用
-        List<Goods> dailyGoods = getCateGoods("日用", userid);
-        model.addAttribute("dailyGoods", dailyGoods);
-
-        //家电
-        List<Goods> houseGoods = getCateGoods("家电", userid);
-        model.addAttribute("houseGoods", houseGoods);
-
-        //服饰
-        List<Goods> colGoods = getCateGoods("服饰", userid);
-        model.addAttribute("colGoods", colGoods);
-
-        //书籍
-        List<Goods> bookGoods = getCateGoods("书籍", userid);
-        model.addAttribute("bookGoods", bookGoods);
+        //软欧
+        List<Goods> roGoods = getCateGoods("软欧", userid);
+        model.addAttribute("roGoods", roGoods);
+        //法式
+        List<Goods> fsGoods = getCateGoods("法式", userid);
+        model.addAttribute("fsGoods", fsGoods);
+        //花式
+        List<Goods> hsGoods = getCateGoods("花式", userid);
+        model.addAttribute("hsGoods", hsGoods);
+        //中式
+        List<Goods> zsGoods = getCateGoods("中式", userid);
+        model.addAttribute("zsGoods", zsGoods);
+        //美式
+        List<Goods> msGoods = getCateGoods("美式", userid);
+        model.addAttribute("msGoods", msGoods);
+        //法国
+        List<Goods> fgGoods = getCateGoods("法国", userid);
+        model.addAttribute("fgGoods", fgGoods);
+        //日式
+        List<Goods> rsGoods = getCateGoods("日式", userid);
+        model.addAttribute("rsGoods", rsGoods);
 
         return "main";
     }
@@ -68,21 +69,27 @@ public class MainController {
         } else {
             userid = user.getUserid();
         }
-        //数码分类
-        List<Goods> digGoods = getCateGoods("数码", userid);
-        model.addAttribute("digGoods", digGoods);
-        //日用
-        List<Goods> dailyGoods = getCateGoods("日用", userid);
-        model.addAttribute("dailyGoods", dailyGoods);
-        //家电
-        List<Goods> houseGoods = getCateGoods("家电", userid);
-        model.addAttribute("houseGoods", houseGoods);
-        //服饰
-        List<Goods> colGoods = getCateGoods("服饰", userid);
-        model.addAttribute("colGoods", colGoods);
-        //书籍
-        List<Goods> bookGoods = getCateGoods("书籍", userid);
-        model.addAttribute("bookGoods", bookGoods);
+        //软欧
+        List<Goods> roGoods = getCateGoods("软欧", userid);
+        model.addAttribute("roGoods", roGoods);
+        //法式
+        List<Goods> fsGoods = getCateGoods("法式", userid);
+        model.addAttribute("fsGoods", fsGoods);
+        //花式
+        List<Goods> hsGoods = getCateGoods("花式", userid);
+        model.addAttribute("hsGoods", hsGoods);
+        //中式
+        List<Goods> zsGoods = getCateGoods("中式", userid);
+        model.addAttribute("zsGoods", zsGoods);
+        //美式
+        List<Goods> msGoods = getCateGoods("美式", userid);
+        model.addAttribute("msGoods", msGoods);
+        //法国
+        List<Goods> fgGoods = getCateGoods("法国", userid);
+        model.addAttribute("fgGoods", fgGoods);
+        //日式
+        List<Goods> rsGoods = getCateGoods("日式", userid);
+        model.addAttribute("rsGoods", rsGoods);
 
         return "main";
     }

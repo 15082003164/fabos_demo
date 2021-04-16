@@ -196,7 +196,7 @@ limitations under the License
                             </thead>
                             <tbody >
                             <tr >
-                                <th style="border: 0px solid transparent" class="tl">用户号</th>
+                                <th style="border: 0px solid transparent" class="tl">工号</th>
                                 <td style="border: 0px solid transparent" class="tr" id="userIdVal">${user.getUserid()}</td>
                             </tr>
                             <tr>
